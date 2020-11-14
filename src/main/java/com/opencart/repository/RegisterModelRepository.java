@@ -1,6 +1,7 @@
 package com.opencart.repository;
 
 import com.opencart.datamodel.RegisterModel;
+import com.opencart.util.RandomEmailUtil;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class RegisterModelRepository {
@@ -13,7 +14,7 @@ public class RegisterModelRepository {
         return RegisterModel.getBuilder()
                 .firstName(RandomStringUtils.randomAlphabetic(5))
                 .lastName(RandomStringUtils.randomAlphabetic(5))
-                .email(RandomStringUtils.randomAlphabetic(5) + "@gmail.com")
+                .email(RandomEmailUtil.email)
                 .telephone(RandomStringUtils.randomNumeric(10))
                 .password(password)
                 .passwordConfirm(password)

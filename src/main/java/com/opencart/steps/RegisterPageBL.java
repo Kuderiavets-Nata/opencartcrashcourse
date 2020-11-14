@@ -5,6 +5,7 @@ import com.opencart.pages.RegisterPage;
 import com.opencart.pages.SuccessRegisterPage;
 import com.opencart.repository.RegisterModelRepository;
 import com.opencart.util.DriverUtils;
+import com.opencart.util.RandomEmailUtil;
 import org.testng.Assert;
 
 public class RegisterPageBL {
@@ -20,7 +21,7 @@ public class RegisterPageBL {
         RegisterModel registerModel = RegisterModelRepository.getRegisterModel();
         inputFirstName(registerModel.getFirstName());
         inputLastName(registerModel.getLastName());
-        inputEmail(registerModel.getEmail());
+        inputEmail(RandomEmailUtil.getRandomEmail());
         inputTelephone(registerModel.getTelephone());
         inputPassword(registerModel.getPassword());
         chooseSubscribe(1);

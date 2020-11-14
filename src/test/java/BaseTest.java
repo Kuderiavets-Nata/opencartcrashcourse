@@ -1,5 +1,5 @@
 import com.opencart.driver.DriverRepository;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
@@ -15,7 +15,7 @@ public class BaseTest {
         DriverRepository.instanceWebBrowser();
     }
 
-    @AfterSuite
+    @AfterClass
     public void closeBrowser() {
       DriverRepository.closeBrowser();
     }

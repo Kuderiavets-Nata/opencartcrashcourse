@@ -4,6 +4,9 @@ import com.opencart.driver.DriverRepository;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverUtils {
 
@@ -13,7 +16,7 @@ public class DriverUtils {
         driver = DriverRepository.DRIVERS.get();
     }
 
-    public void clickOnElementJS(WebElement webElement){
+    public void clickOnElementJS(WebElement webElement) {
         getJSExecutor().executeScript("arguments[0].click();", webElement);
     }
 

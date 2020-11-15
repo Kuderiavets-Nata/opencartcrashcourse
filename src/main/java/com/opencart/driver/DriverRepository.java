@@ -18,8 +18,6 @@ public class DriverRepository {
 
     public static void instanceWebBrowser() {
         webDriver = new ChromeDriver();
-
-
         DRIVERS.set(webDriver);
     }
 

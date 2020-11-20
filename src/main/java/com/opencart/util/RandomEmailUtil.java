@@ -38,8 +38,11 @@ public class RandomEmailUtil {
         String[] emailDomains = email.split("@");
         String URL = URLs.TEMP_MAILS_URL.getValue() + "getMessages&login=" + emailDomains[0] + "&domain=" + emailDomains[1];
         try {
-            HttpResponse<String> response = getJsonByURL(URL);
-            String emailId = RandomEmailUtil.getSubstringWithRegularExpression(response.body(), "\"id\":(\\d+)");
+            String emailId = "";
+            while (emailId.equals("")) {
+                HttpResponse<String> response = getJsonByURL(URL);
+                emailId = RandomEmailUtil.getSubstringWithRegularExpression(response.body(), "\"id\":(\\d+),\"from\":\".+\",\"subject\":\"Your Store - Password reset request\"");
+            }
             URL = URLs.TEMP_MAILS_URL.getValue() + "readMessage&login=" + emailDomains[0] + "&domain=" + emailDomains[1] + "&id=" + emailId;
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

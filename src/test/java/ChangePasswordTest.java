@@ -15,19 +15,24 @@ public class ChangePasswordTest extends BaseTest {
 
     private String randomEmail;
 
-    @Test(priority = 1)
+    @BeforeMethod
     public void registerUserWithValidParameters() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         MainPageBL mainPageBL = new MainPageBL();
-        RegisterPageBL registerPageBL = mainPageBL.getHeaderPageBL()
+        mainPageBL.getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnRegisterButton()
-                .registerNewPerson();
+                .registerNewPerson()
+                .verifyUserRegistration();
         randomEmail = RandomEmailUtil.email;
-        registerPageBL.verifyUserRegistration();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLogoutButton()
+                .clickContinue()
+                .verifyLogout();
     }
 
-    @Test(priority = 2)
+    @Test
     public void unlockUserWithDB() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         UserHelper.lockUser(randomEmail);
@@ -41,7 +46,7 @@ public class ChangePasswordTest extends BaseTest {
                 .verifyUserLogin();
     }
 
-    @Test(priority = 3)
+    @Test
     public void unlockUserWithAdminPanel() {
         Navigation navigation = new Navigation();
         navigation.navigateToUrl(BASE_URL.getValue());

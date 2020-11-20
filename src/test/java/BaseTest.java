@@ -7,7 +7,7 @@ public class BaseTest {
 
     @BeforeSuite
     public void setup() {
-        DriverRepository.downloadWebDriver();
+        DriverRepository.downloadWebDriver("Chrome");
     }
 
     @BeforeClass

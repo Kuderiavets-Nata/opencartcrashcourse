@@ -8,15 +8,14 @@ import static com.opencart.enums.URLs.BASE_URL;
 
 public class UserRegisterTest extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void registerUserWithValidParameters() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
-        MainPageBL mainPageBL = new MainPageBL();
-        RegisterPageBL registerPageBL = mainPageBL.getHeaderPageBL()
+        new MainPageBL().getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnRegisterButton()
-                .registerNewPerson();
-        registerPageBL.verifyUserRegistration();
+                .registerNewPerson()
+                .verifyUserRegistration();
     }
 
     @AfterMethod

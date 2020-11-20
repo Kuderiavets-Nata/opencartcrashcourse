@@ -33,26 +33,31 @@ public class RegisterPageBL {
     }
 
     private void inputFirstName(String firstName) {
+        registerPage.waitUntilFindElement(registerPage.getFirstNameInput());
         registerPage.getFirstNameInput().clear();
         registerPage.getFirstNameInput().sendKeys(firstName);
     }
 
     private void inputLastName(String lastName) {
+        registerPage.waitUntilFindElement(registerPage.getLastNameInput());
         registerPage.getLastNameInput().clear();
         registerPage.getLastNameInput().sendKeys(lastName);
     }
 
     private void inputEmail(String email) {
+        registerPage.waitUntilFindElement(registerPage.getEmailInput());
         registerPage.getEmailInput().clear();
         registerPage.getEmailInput().sendKeys(email);
     }
 
     private void inputTelephone(String telephone) {
+        registerPage.waitUntilFindElement(registerPage.getTelephoneInput());
         registerPage.getTelephoneInput().clear();
         registerPage.getTelephoneInput().sendKeys(telephone);
     }
 
     private void inputPassword(String password) {
+        registerPage.waitUntilFindElement(registerPage.getPasswordInput());
         registerPage.getPasswordInput().clear();
         registerPage.getPasswordInput().sendKeys(password);
         registerPage.getPasswordConfirmInput().clear();
@@ -72,6 +77,7 @@ public class RegisterPageBL {
     }
 
     public void verifyUserRegistration() {
+        registerPage.waitUntilFindElement(successRegisterPage.getSuccessTitle());
         String expectedMessage = "Your Account Has Been Created!";
         Assert.assertEquals(successRegisterPage.getSuccessTitle().getText(), expectedMessage, "Incorrect page title");
     }

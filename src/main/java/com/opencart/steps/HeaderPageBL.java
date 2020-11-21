@@ -1,6 +1,5 @@
 package com.opencart.steps;
 
-import com.opencart.navigation.Navigation;
 import com.opencart.pages.HeaderPage;
 import org.testng.Assert;
 

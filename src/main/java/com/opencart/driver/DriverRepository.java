@@ -3,6 +3,7 @@ package com.opencart.driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverRepository {
@@ -23,6 +24,8 @@ public class DriverRepository {
             case "Firefox":
                 WebDriverManager.firefoxdriver().setup();
                 break;
+            case "Edge":
+                WebDriverManager.edgedriver().setup();
             default:
                 System.err.println("Wrong browser name");
                 break;
@@ -36,6 +39,9 @@ public class DriverRepository {
                 break;
             case "Firefox":
                 webDriver = new FirefoxDriver();
+                break;
+            case "Edge":
+                webDriver = new EdgeDriver();
                 break;
         }
         DRIVERS.set(webDriver);

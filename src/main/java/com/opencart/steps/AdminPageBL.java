@@ -1,6 +1,7 @@
 package com.opencart.steps;
 
 import com.opencart.enums.AdminNavigationMenuButtons;
+import com.opencart.helpers.PropertiesHelper;
 import com.opencart.navigation.Navigation;
 import com.opencart.pages.AdminPage;
 import org.testng.Assert;
@@ -14,8 +15,8 @@ public class AdminPageBL {
 
 
     public AdminPageBL loginAdmin() {
-        inputAdminUsername("admin");
-        inputAdminPassword("qwert_123");
+        inputAdminUsername(PropertiesHelper.getValue("admin.login"));
+        inputAdminPassword(PropertiesHelper.getValue("admin.password"));
         clickOnLoginButton();
         return new AdminPageBL();
     }
@@ -33,22 +34,27 @@ public class AdminPageBL {
     }
 
     private void inputUsernameToUnlock(String customerEmail) {
+        adminPage.waitUntilFindElement(adminPage.getCustomerEmailInput());
         adminPage.customerEmailInput.clear();
         adminPage.customerEmailInput.sendKeys(customerEmail);
     }
 
     public void inputAdminUsername(String username) {
+        adminPage.waitUntilFindElement(adminPage.getAdminNameInput());
         adminPage.adminNameInput.clear();
         adminPage.adminNameInput.sendKeys(username);
     }
 
     public void inputAdminPassword(String password) {
+        adminPage.waitUntilFindElement(adminPage.getAdminPasswordInput());
         adminPage.adminPasswordInput.clear();
         adminPage.adminPasswordInput.sendKeys(password);
     }
 
     public void clickOnMenuButton(AdminNavigationMenuButtons button, String submenuName) {
+        adminPage.waitUntilFindElement(adminPage.clickOnMenuButton(button));
         adminPage.clickOnMenuButton(button).click();
+        adminPage.waitUntilFindElement(adminPage.clickOnSubmenuButton(button, submenuName));
         adminPage.clickOnSubmenuButton(button, submenuName).click();
     }
 
@@ -69,6 +75,7 @@ public class AdminPageBL {
     }
 
     public void verifyUnlockAccount() {
+        adminPage.waitUntilFindElement(adminPage.getSuccessAlert());
         String expectedMessage = "Success: You have modified customers!";
         Assert.assertTrue(adminPage.successAlert.getText().contains(expectedMessage), "Customer has not modified");
     }

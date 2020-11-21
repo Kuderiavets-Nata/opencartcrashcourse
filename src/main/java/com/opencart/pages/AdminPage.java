@@ -39,8 +39,6 @@ public class AdminPage extends BasePage {
     }
 
     public WebElement clickOnSubmenuButton(AdminNavigationMenuButtons button, String submenuName) {
-        String s = "//*[@id = '" + button.getId() + "']//li/a[contains(text(), " + submenuName + ")]";
-        System.out.println(s);
-        return driver.findElement(By.xpath(s));
+        return driver.findElement(By.xpath("//*[@id = '" + button.getId() + "']//li/a[contains(text(), " + submenuName + ")]"));
     }
 }

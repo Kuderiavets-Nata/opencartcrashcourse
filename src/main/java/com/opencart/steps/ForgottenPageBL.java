@@ -6,12 +6,10 @@ import com.opencart.navigation.Navigation;
 import com.opencart.pages.ForgottenPasswordPage;
 import com.opencart.pages.SuccessResetPasswordPage;
 import com.opencart.repository.LoginModelRepository;
-import com.opencart.repository.RegisterModelRepository;
 import com.opencart.util.RandomEmailUtil;
-import lombok.extern.java.Log;
 import org.testng.Assert;
 
-public class ForgottenPageBL {
+public class  ForgottenPageBL {
 
     public static String newPassword;
     private ForgottenPasswordPage forgottenPasswordPage;
@@ -41,6 +39,7 @@ public class ForgottenPageBL {
     }
 
     private void inputNewPassword(String password) {
+        forgottenPasswordPage.waitUntilFindElement(forgottenPasswordPage.getNewPasswordInput());
         forgottenPasswordPage.getNewPasswordInput().clear();
         forgottenPasswordPage.getNewPasswordInput().sendKeys(password);
         forgottenPasswordPage.getNewPasswordConfirmInput().clear();
@@ -48,15 +47,18 @@ public class ForgottenPageBL {
     }
 
     private void inputEmail(String email) {
+        forgottenPasswordPage.waitUntilFindElement(forgottenPasswordPage.getForgottenEmailInput());
         forgottenPasswordPage.getForgottenEmailInput().clear();
         forgottenPasswordPage.getForgottenEmailInput().sendKeys(email);
     }
 
     private void clickOnContinueButton() {
+        forgottenPasswordPage.waitUntilFindElement(forgottenPasswordPage.getContinueButton());
         forgottenPasswordPage.getContinueButton().click();
     }
 
     public void verifyChangePassword() {
+        forgottenPasswordPage.waitUntilFindElement(successResetPasswordPage.getSuccessAlert());
         String expectedMessage = "Success: Your password has been successfully updated.";
         Assert.assertEquals(successResetPasswordPage.getSuccessAlert().getText(), expectedMessage, "Incorrect page title");
     }
